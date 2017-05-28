@@ -1,0 +1,16 @@
+{
+  "name": "image_abstraction_layer_api_007",
+  "version": "1.0.0",
+  "description": "This is image search abstract layer FCC  basejump ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manh Dung",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27",
+    "request": "^2.81.0"
+  }
+}
