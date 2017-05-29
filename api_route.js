@@ -3,7 +3,7 @@ var request = require('request');
 var MongoClient = require('mongodb').MongoClient;
 var route = express.Router();
 
-var key = process.env.GOOGLE_KEY; // this thing doesnt run local :( wasted 1 hour, i going to get node debug inspector tonight 
+var key = process.env.GOOGLE_KEY; // this thing doesnt run local :( wasted 1 hour, i going to get node debug inspector tonight
 var cx = '002242856440632671206:hcqpsa883so';
 
 var url = process.env.MONGOLAB_URI||'mongodb://localhost:27017/Info';
@@ -51,7 +51,7 @@ else if ( +offset <= 0 || ((+offset)>90)){
 else getResult(search_text,offset,res);
 
 // ip address reogize user
-var ip = req.connection.remoteAddress;
+var ip = req.ip;
 
 if(ip){
 // mongodb store user data
@@ -71,7 +71,7 @@ var date = new Date();
 
 
 route.get('/api/latest/imagesearch',(req,res)=>{
-  var ip = req.connection.remoteAddress;
+  var ip = req.ip;
   if(ip){
   MongoClient.connect(url,(err,db)=>{
 
