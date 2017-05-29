@@ -51,7 +51,15 @@ else if ( +offset <= 0 || ((+offset)>90)){
 else getResult(search_text,offset,res);
 
 // ip address reogize user
-var ip = req.ip;
+var ip;
+if(req.header('x-forwarded-for')){
+      var arrIp=req.header('x-forwarded-for').split(',');
+      ip = arrIp[0];
+      console.log( req.header('x-forwarded-for').split(',')[0]);
+    }
+    else{
+      ip =req.connection.remoteAddress;
+    }
 
 if(ip){
 // mongodb store user data
@@ -71,7 +79,16 @@ var date = new Date();
 
 
 route.get('/api/latest/imagesearch',(req,res)=>{
-  var ip = req.ip; // req.headers['x-fowarded-for'] or req.connection.remoteAddress
+  var ip; // req.headers['x-fowarded-for'] or req.connection.remoteAddress
+  if(req.header('x-forwarded-for')){
+        var arrIp=req.header('x-forwarded-for').split(',');
+        ip = arrIp[0];
+        console.log( req.header('x-forwarded-for').split(',')[0]);
+      }
+      else{
+        ip =req.connection.remoteAddress;
+      }
+
   if(ip){
   MongoClient.connect(url,(err,db)=>{
 ip=ip.toString();
