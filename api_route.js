@@ -71,7 +71,7 @@ var date = new Date();
 
 
 route.get('/api/latest/imagesearch',(req,res)=>{
-  var ip = req.ip;
+  var ip = req.ip; // req.headers['x-fowarded-for'] or req.connection.remoteAddress
   if(ip){
   MongoClient.connect(url,(err,db)=>{
 
