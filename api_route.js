@@ -57,7 +57,7 @@ if(ip){
 // mongodb store user data
 MongoClient.connect(url,(err,db)=>{
 var date = new Date();
-  db.collection('users').insert({'ip':ip,'term':search_text,'when':date},(err,result)=>{
+  db.collection('users').insert({'ip':ip.toString(),'term':search_text,'when':date},(err,result)=>{
     if(err){
        console.log("can not insert doc");
        throw err;
@@ -74,7 +74,7 @@ route.get('/api/latest/imagesearch',(req,res)=>{
   var ip = req.ip; // req.headers['x-fowarded-for'] or req.connection.remoteAddress
   if(ip){
   MongoClient.connect(url,(err,db)=>{
-
+ip=ip.toString();
     db.collection('users').find({'ip':ip}).limit(10).toArray((err,docs)=>{
       var resArr=[];
       docs.forEach((value,index)=>{
